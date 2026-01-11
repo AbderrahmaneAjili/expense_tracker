@@ -55,7 +55,8 @@ const Login = () => {
               <Icons.AtIcon
                 size={verticalScale(26)}
                 color={colors.neutral300}
-                weight="fill"
+                //weight="fill"
+                weight="duotone"
               />
             }
           />
@@ -67,7 +68,8 @@ const Login = () => {
               <Icons.LockIcon
                 size={verticalScale(26)}
                 color={colors.neutral300}
-                weight="fill"
+                //weight="fill"
+                weight="duotone"
               />
             }
           />

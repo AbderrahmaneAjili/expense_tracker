@@ -108,7 +108,7 @@ const TransactionItem = ({
           {IconComponent && (
             <IconComponent
               size={verticalScale(25)}
-              weight="fill"
+              weight="duotone"
               color={colors.white}
             />
           )}
@@ -127,9 +127,9 @@ const TransactionItem = ({
         <View style={styles.amountDate}>
           <Typo
             fontWeight={"500"}
-            color={item?.type == "income" ? colors.green : colors.rose}
+            color={item?.type === "income" ? colors.green : colors.rose}
           >
-            {`${item?.type == "income" ? "+ $" : "- $"}${item.amount}`}
+            {`${item?.type === "income" ? `+${item.amount.toFixed(2)} TND` : `-${item.amount} TND`}`}
           </Typo>
           <Typo size={13} color={colors.neutral400}>
             {date}
@@ -160,6 +160,7 @@ const styles = StyleSheet.create({
 
     // list with background
     backgroundColor: colors.neutral800,
+    //backgroundColor: "#57b5e851",
     padding: spacingY._10,
     paddingHorizontal: spacingY._10,
     borderRadius: radius._17,

@@ -21,25 +21,28 @@ const Profile = () => {
   const accountOptions: accountOptionType[] = [
     {
       title: "Edit Profile",
-      icon: <Icons.UserIcon size={26} color={colors.white} weight="fill" />,
+      icon: <Icons.UserIcon size={26} color={colors.white} weight="bold"//weight="fill" 
+      />,
       routeName: "/(modals)/profileModal",
-      bgColor: "#6366f1",
+      //bgColor: "#6366f1",
+      bgColor: "#0668d0ff",
     },
     {
       title: "Settings",
-      icon: <Icons.GearSixIcon size={26} color={colors.white} weight="fill" />,
+      icon: <Icons.GearSixIcon size={26} color={colors.white} weight="bold" />,
       //routeName: "/(modals)/profileModal",
       bgColor: "#059669",
     },
     {
       title: "Privacy Policy",
-      icon: <Icons.LockIcon size={26} color={colors.white} weight="fill" />,
+      icon: <Icons.LockIcon size={26} color={colors.white} weight="bold" />,
       //routeName: "/(modals)/profileModal",
-      bgColor: colors.neutral600,
+      //bgColor: colors.neutral600,
+      bgColor: "#88888888",
     },
     {
       title: "Logout",
-      icon: <Icons.PowerIcon size={26} color={colors.white} weight="fill" />,
+      icon: <Icons.PowerIcon size={26} color={colors.white} weight="bold" />,
       //routeName: "/(modals)/profileModal",
       bgColor: "#e11d48",
     },

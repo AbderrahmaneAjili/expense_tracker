@@ -208,7 +208,7 @@ const TransactionModal = () => {
               selectedTextStyle={styles.dropdownSelectedText}
               iconStyle={styles.dropdownIcon}
               data={wallets.map((wallet) => ({
-                label: `${wallet?.name}($${wallet.amount})`,
+                label: `${wallet?.name} (${wallet.amount?.toFixed(2)} TND)`,
                 value: wallet?.id,
               }))}
               maxHeight={300}

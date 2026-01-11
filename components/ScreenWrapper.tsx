@@ -1,5 +1,6 @@
 import { colors } from "@/constants/theme";
 import { ScreenWrapperProps } from "@/types";
+import { NavigationArrowIcon } from "phosphor-react-native";
 import React from "react";
 import {
   Dimensions,
@@ -12,7 +13,7 @@ import {
 const { height } = Dimensions.get("window");
 
 const ScreenWrapper = ({ style, children }: ScreenWrapperProps) => {
-  let paddingTop = Platform.OS == "ios" ? height * 0.06 : 0;
+  let paddingTop = Platform.OS === "ios" ? height * 0.06 : 35;
   return (
     <View
       style={[

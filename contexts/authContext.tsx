@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       } else {
         // no user
         setUser(null);
-        router.replace("/(auth)/welcome");
+        router.replace("/(auth)/welcome"); 
       }
     });
     return () => unsub();

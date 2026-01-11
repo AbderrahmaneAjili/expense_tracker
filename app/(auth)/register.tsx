@@ -62,7 +62,8 @@ const Register = () => {
               <Icons.UserIcon
                 size={verticalScale(26)}
                 color={colors.neutral300}
-                weight="fill"
+                //weight="fill"
+                weight="duotone"
               />
             }
           />
@@ -73,7 +74,8 @@ const Register = () => {
               <Icons.AtIcon
                 size={verticalScale(26)}
                 color={colors.neutral300}
-                weight="fill"
+                //weight="fill"
+                weight="duotone"
               />
             }
           />
@@ -86,7 +88,8 @@ const Register = () => {
               <Icons.LockIcon
                 size={verticalScale(26)}
                 color={colors.neutral300}
-                weight="fill"
+                //weight="fill"
+                weight="duotone"
               />
             }
           />

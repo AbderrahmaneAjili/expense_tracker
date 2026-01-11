@@ -2,14 +2,15 @@ import BackButton from "@/components/BackButton";
 import Header from "@/components/Header";
 import Input from "@/components/Input";
 import ModalWrapper from "@/components/ModalWrapper";
-import { colors, spacingX, spacingY } from "@/constants/theme";
+import TransactionList from "@/components/TransactionList";
+import { colors, spacingY } from "@/constants/theme";
 import { useAuth } from "@/contexts/authContext";
-import { createOrUpdateWallet } from "@/services/walletService";
-import { WalletType } from "@/types";
-import { scale, verticalScale } from "@/utils/styling";
+import useFetchData from "@/hooks/useFetchData";
+import { TransactionType } from "@/types";
 import { useRouter } from "expo-router";
+import { orderBy, where } from "firebase/firestore";
 import React, { useState } from "react";
-import { Alert, ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 const SearchModal = () => {
   const { user } = useAuth();
@@ -17,31 +18,29 @@ const SearchModal = () => {
 
   const [loading, setLoading] = useState(false);
   const [search, setSearch] = useState("");
+  const constraints = [where("uid", "==", user?.uid), orderBy("date", "desc")];
+  const {
+    data: allTransactions,
+    error,
+    loading: transactionsLoading,
+  } = useFetchData<TransactionType>("transactions", constraints);
 
-  const onSubmit = async () => {
-    let { name, image } = wallet;
-    if (!name.trim() || !image) {
-      Alert.alert("Wallet", "Please fill all the fields");
-      return;
+  const filteredTransactions = allTransactions.filter((item) => {
+    if (search.length > 1) {
+      if (
+        item.category?.toLowerCase()?.includes(search?.toLowerCase()) ||
+        item.type?.toLowerCase()?.includes(search?.toLowerCase()) ||
+        item.description?.toLowerCase()?.includes(search?.toLowerCase())
+      ) {
+        return true;
+      }
+      return false;
     }
-    const data: WalletType = {
-      name,
-      image,
-      uid: user?.uid,
-    };
-    //Todo : include wallet id if updating
-    if (oldWallet?.id) data.id = oldWallet?.id;
-    setLoading(true);
-    const res = await createOrUpdateWallet(data);
-    setLoading(false);
-    //console.log("result:", res);
-    if (res.success) {
-      router.back();
-    } else Alert.alert("Wallet", res.msg);
-  };
+    return true;
+  });
 
   return (
-    <ModalWrapper>
+    <ModalWrapper style={{ backgroundColor: colors.neutral900 }}>
       <View style={styles.container}>
         <Header
           title={"Search"}
@@ -50,12 +49,25 @@ const SearchModal = () => {
         />
 
         {/* form */}
-        <ScrollView contentContainerStyle={styles.form}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.form}
+        >
           <View style={styles.inputContainer}>
             <Input
               placeholder="shoes..."
+              placeholderTextColor={colors.neutral400}
               value={search}
+              containerStyle={{ backgroundColor: colors.neutral800 }}
               onChangeText={(value) => setSearch(value)}
+            />
+          </View>
+
+          <View>
+            <TransactionList
+              loading={transactionsLoading}
+              data={filteredTransactions}
+              emptyListMessage="No transaction match your search keywords"
             />
           </View>
         </ScrollView>
@@ -73,17 +85,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacingY._20,
     // paddingVertical: spacingY._30,
   },
-  footer: {
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingHorizontal: spacingX._20,
-    gap: scale(12),
-    paddingTop: spacingY._15,
-    borderTopColor: colors.neutral700,
-    marginBottom: spacingY._5,
-    borderTopWidth: 1,
-  },
+
   form: {
     gap: spacingY._30,
     marginTop: spacingY._15,
@@ -92,31 +94,7 @@ const styles = StyleSheet.create({
     position: "relative",
     alignSelf: "center",
   },
-  avatar: {
-    alignSelf: "center",
-    backgroundColor: colors.neutral300,
-    height: verticalScale(135),
-    width: verticalScale(135),
-    borderRadius: 200,
-    borderWidth: 1,
-    borderColor: colors.neutral500,
-    // overflow: "hidden",
-    // position: "relative",
-  },
 
-  editIcon: {
-    position: "absolute",
-    bottom: spacingY._5,
-    right: spacingY._7,
-    borderRadius: 100,
-    backgroundColor: colors.neutral100,
-    shadowColor: colors.black,
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    elevation: 4,
-    padding: spacingY._7,
-  },
   inputContainer: {
     gap: spacingY._10,
   },

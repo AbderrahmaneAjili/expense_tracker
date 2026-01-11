@@ -95,7 +95,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     width: "100%",
     height: Platform.OS === "ios" ? verticalScale(73) : verticalScale(55),
+
     backgroundColor: colors.neutral800,
+    //backgroundColor: "#036aa148",
     justifyContent: "space-around",
     alignItems: "center",
     borderTopColor: colors.neutral700,

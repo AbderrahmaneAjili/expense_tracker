@@ -1,17 +1,28 @@
 import { scale, verticalScale } from "@/utils/styling";
 
 export const colors = {
-  primary: "#a3e635",
+  //primary: "#a3e635",
+  primary: "#0369a1",
+
   primaryLight: "#0ea5e9",
   primaryDark: "#0369a1",
-  text: "#fff",
+  /*text: "#fff",
   textLight: "#e5e5e5",
-  textLighter: "#d4d4d4",
-  white: "#fff",
-  black: "#000",
+  textLighter: "#d4d4d4",*/
+  ///////////////////////////
+  text: "#000000",        // opposite of #ffffff
+textLight: "#1a1a1a",   // opposite of #e5e5e5
+textLighter: "#2b2b2b", // opposite of #d4d4d4
+///////////////////////
+  /*white: "#fff",
+  black: "#000",*/
+  /////////////////////////////
+  white: "#000",
+  black: "#fff",
+  ///////////////////////
   rose: "#ef4444",
   green: "#16a34a",
-  neutral50: "#fafafa",
+ /* neutral50: "#fafafa",
   neutral100: "#f5f5f5",
   neutral200: "#e5e5e5",
   neutral300: "#d4d4d4",
@@ -22,6 +33,19 @@ export const colors = {
   neutral700: "#404040",
   neutral800: "#262626",
   neutral900: "#171717",
+  //neutral900: "#ecececff",*/
+neutral50:  "#050505", // opposite of #fafafa
+neutral100: "#0a0a0a", // opposite of #f5f5f5
+neutral200: "#1a1a1a", // opposite of #e5e5e5
+neutral300: "#2b2b2b", // opposite of #d4d4d4
+neutral350: "#333333", // opposite of #cccccc
+neutral400: "#5c5c5c", // opposite of #a3a3a3
+neutral500: "#8c8c8c", // opposite of #737373
+neutral600: "#adadad", // opposite of #525252
+neutral700: "#bfbfbf", // opposite of #404040
+neutral800: "#d9d9d9", // opposite of #262626
+neutral900: "#e8e8e8", // opposite of #171717
+
 };
 
 export const spacingX = {

@@ -34,7 +34,7 @@ const HomeCard = () => {
 
   return (
     <ImageBackground
-      source={require("../assets/images/card.png")}
+      source={require("../assets/images/image.png")}
       resizeMode="stretch"
       style={styles.bgImage}
     >
@@ -52,7 +52,7 @@ const HomeCard = () => {
             />
           </View>
           <Typo color={colors.black} size={30} fontWeight={"bold"}>
-            $ {walletLoading ? "----" : getTotals()?.balance?.toFixed(2)}
+            {walletLoading ? "----" : getTotals()?.balance?.toFixed(2)} TND
           </Typo>
         </View>
         {/*expencesand income */}
@@ -73,7 +73,7 @@ const HomeCard = () => {
             </View>
             <View style={{ alignSelf: "center" }}>
               <Typo size={17} color={colors.green} fontWeight={"600"}>
-                $ {walletLoading ? "----" : getTotals()?.income?.toFixed(2)}
+                {walletLoading ? "----" : getTotals()?.income?.toFixed(2)} TND
               </Typo>
             </View>
           </View>
@@ -93,7 +93,7 @@ const HomeCard = () => {
             </View>
             <View style={{ alignSelf: "center" }}>
               <Typo size={17} color={colors.rose} fontWeight={"600"}>
-                $ {walletLoading ? "----" : getTotals()?.expenses.toFixed(2)}
+                {walletLoading ? "----" : getTotals()?.expenses.toFixed(2)} TND
               </Typo>
             </View>
           </View>
