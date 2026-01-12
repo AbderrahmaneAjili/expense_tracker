@@ -302,11 +302,12 @@ const TransactionModal = () => {
             <Input
               //placeholder="Salary"
               value={transaction.amount?.toString()}
-              keyboardType="numeric"
+              keyboardType="decimal-pad"
               onChangeText={(value) =>
                 setTransaction({
                   ...transaction,
-                  amount: Number(value.replace(/[^0-9]/g, "")),
+                  amount: 
+                  Number(value.replace(/[^0-9]/g, "")),
                 })
               }
             />
